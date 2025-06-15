@@ -1,4 +1,4 @@
-import {apiKeySchema} from '../models/apiKey.models';
+import {apiKeySchema} from '../models/apiKey.models.js';
 import { v4 as uuidv4 } from 'uuid';
 
 // create, deleteById, getByToken, getById, getByDevId, getByProjectId

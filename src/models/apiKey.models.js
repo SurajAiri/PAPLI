@@ -1,4 +1,4 @@
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 // apiKey: id, token, developerId, projectId, createdAt, 
 const apiKeySchema = new mongoose.Schema({

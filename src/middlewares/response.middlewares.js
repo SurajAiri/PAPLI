@@ -17,4 +17,5 @@ function responseFormatter(req, res, next) {
   next();
 }
 
-module.exports = responseFormatter;
+// module.exports = responseFormatter;
+export default responseFormatter;

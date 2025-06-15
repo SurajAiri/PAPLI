@@ -1,4 +1,4 @@
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 // user: id, name, email, password, role, createdAt, google id
 const userSchema = new mongoose.Schema({

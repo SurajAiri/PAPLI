@@ -1,6 +1,6 @@
 // command.models.js: apiKeyId, projectId, userId, payload, status, createdAt, updatedAt
 
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 
 const commandSchema = new mongoose.Schema({

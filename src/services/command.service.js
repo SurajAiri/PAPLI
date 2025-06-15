@@ -1,4 +1,4 @@
-import commandSchema from '../models/command.models';
+import commandSchema from '../models/command.models.js';
 
 // todo: reconfigure this service properly in next version
 const CommandService = {

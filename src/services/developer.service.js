@@ -1,4 +1,4 @@
-import developerSchema from '../models/developer.model.js';
+import developerSchema from '../models/developer.models.js';
 
 // create, updateById, deleteById, getById, getAll, count
 const DeveloperService = {

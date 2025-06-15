@@ -1,17 +1,18 @@
-require('dotenv').config();
-const express = require('express');
-const responseFormatter = require("./src/middlewares/response.middlewares");
+import 'dotenv/config';
+import express from 'express';
+import responseFormatter from './src/middlewares/response.middlewares.js';
+import mongoose from 'mongoose';
+import router from './src/routes/index.routes.js';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-const mongoose = require('mongoose');
 
 // middlewares
 app.use(express.json());
 app.use(responseFormatter);
 
-app.get('/', (req, res) => {
-    res.sendResponse(200, { message: "Health Check for 'PAPLI' APIs." });
-});
+app.use('/api/v1', router);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

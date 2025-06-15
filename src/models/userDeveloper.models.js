@@ -1,6 +1,6 @@
 // userDeveloper.models.js: devId, userId, permissions, projectId
 
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 const userDeveloperSchema = new mongoose.Schema({
     devId: {

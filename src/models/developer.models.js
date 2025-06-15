@@ -1,5 +1,4 @@
-
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 
 // developer: id, name, email, password, role, createdAt, google id

@@ -1,5 +1,5 @@
 // project: id, logo, short desc, title, description, developerId
-const { mongoose } = require('mongoose');
+import mongoose from 'mongoose';
 
 const projectSchema = new mongoose.Schema({
     logo: {
