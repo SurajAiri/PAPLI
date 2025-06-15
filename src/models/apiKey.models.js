@@ -1,6 +1,6 @@
-// apiKey: id, token, developerId, projectId, createdAt, 
-
 const { mongoose } = require('mongoose');
+
+// apiKey: id, token, developerId, projectId, createdAt, 
 const apiKeySchema = new mongoose.Schema({
     token: {
         type: String,

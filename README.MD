@@ -1,4 +1,5 @@
-# PAPLI - Programmable Assistant API for AI Agents & User Devices
+# PAPLI - Personal Assistant Physical Layer Integration
+**A bridge between your device and all your AI Models.**
 
 > A universal interface that lets any AI agent speak, alert, or remind users on their personal devices — like Twilio for voice-driven assistant actions.
 

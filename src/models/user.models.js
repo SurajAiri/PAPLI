@@ -1,6 +1,6 @@
-// user: id, name, email, password, role, createdAt, google id
 const { mongoose } = require('mongoose');
 
+// user: id, name, email, password, role, createdAt, google id
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
