@@ -27,7 +27,7 @@ const CommandService = {
             .limit(limit);
     },
 
-    async getDocumentCount(filters = {}) {
+    async count(filters = {}) {
         return await commandSchema.countDocuments(filters);
     },
 

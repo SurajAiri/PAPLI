@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { objectIdValidator } from './utils';
 
 // Validator for creating a command
-const createCommand = Joi.object({
+const create = Joi.object({
     apiKeyId: objectIdValidator.required().messages({
         'any.required': 'API Key ID is required'
     }),
@@ -21,7 +21,7 @@ const createCommand = Joi.object({
 });
 
 // Validator for updating a command
-const updateCommand = Joi.object({
+const update = Joi.object({
     apiKeyId: objectIdValidator,
     projectId: objectIdValidator,
     userId: objectIdValidator,
@@ -32,7 +32,7 @@ const updateCommand = Joi.object({
 });
 
 // Validator for updating only the status of a command
-const updateCommandStatus = Joi.object({
+const updateStatus = Joi.object({
     status: Joi.string()
         .valid('created', 'queued', 'delivered', 'failed', 'completed')
         .required()
@@ -43,9 +43,9 @@ const updateCommandStatus = Joi.object({
 });
 
 const commandValidators = {
-    createCommand,
-    updateCommand,
-    updateCommandStatus
+    create,
+    update,
+    updateStatus
 };
 
 export default commandValidators;

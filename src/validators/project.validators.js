@@ -3,7 +3,7 @@ import { objectIdValidator } from './utils';
 
 
 // Project validator schema
-const createProject = Joi.object({
+const create = Joi.object({
     logo: Joi.string().trim().required().messages({
         'string.empty': 'Logo is required',
         'any.required': 'Logo is required'
@@ -31,14 +31,14 @@ const createProject = Joi.object({
 
 
 // Validator for project ID
-const projectIdSchema = Joi.object({
+const project = Joi.object({
     id: objectIdValidator.required().messages({
         'any.required': 'Project ID is required'
     })
 });
 
 // update project validator schema
-const updateProject = Joi.object({
+const update = Joi.object({
     logo: Joi.string().trim().optional().messages({
         'string.empty': 'Logo cannot be empty'
     }),
@@ -62,9 +62,8 @@ const updateProject = Joi.object({
     'object.min': 'At least one field is required to update'
 });
 const projectValidator = {
-    createProject,
-    projectIdSchema,
-    updateProject
+    create,
+    update
 };
 
 export default projectValidator;

@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { objectIdValidator } from './utils';
 
 // Validator for creating an API key
-const createApiKey = Joi.object({
+const create = Joi.object({
     token: Joi.string().required().trim(),
     developerId: objectIdValidator.required().messages({
         'any.required': 'Developer ID is required'
@@ -16,7 +16,7 @@ const createApiKey = Joi.object({
 });
 
 const apiKeyValidators = {
-    createApiKey
+    create
 };
 
 export default apiKeyValidators;

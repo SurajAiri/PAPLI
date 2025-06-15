@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { objectIdValidator } from './utils';
 
 // Validator for creating a user-developer association
-const createUserDeveloper = Joi.object({
+const create = Joi.object({
     devId: objectIdValidator.required().messages({
         'any.required': 'Developer ID is required'
     }),
@@ -17,7 +17,7 @@ const createUserDeveloper = Joi.object({
 });
 
 // Validator for updating a user-developer association
-const updateUserDeveloper = Joi.object({
+const update = Joi.object({
     devId: objectIdValidator.optional(),
     userId: objectIdValidator.optional(),
     projectId: objectIdValidator.optional()
@@ -26,8 +26,8 @@ const updateUserDeveloper = Joi.object({
     'object.min': 'At least one field must be provided for update'
 });
 const userDeveloperValidator = {
-    createUserDeveloper,
-    updateUserDeveloper
+    create,
+    update
 };
 
 export default userDeveloperValidator;

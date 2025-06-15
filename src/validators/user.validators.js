@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 
 // User validator schema for creation
-const createUser = Joi.object({
+const create = Joi.object({
     name: Joi.string().trim().required().messages({
         'string.empty': 'Name is required',
         'any.required': 'Name is required'
@@ -30,7 +30,7 @@ const createUser = Joi.object({
 
 
 // Update user validator schema
-const updateUser = Joi.object({
+const update = Joi.object({
     name: Joi.string().trim().optional().messages({
         'string.empty': 'Name cannot be empty'
     }),
@@ -55,8 +55,8 @@ const updateUser = Joi.object({
     'object.min': 'At least one field is required to update'
 });
 const userValidators = {
-    createUser,
-    updateUser
+    create,
+    update
 };
 
 export default userValidators;
