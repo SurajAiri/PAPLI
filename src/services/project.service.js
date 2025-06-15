@@ -1,4 +1,4 @@
-import projectSchema from '../models/project.model.js';
+import projectSchema from '../models/project.models.js';
 
 const ProjectService = {
     async create(projectData) {

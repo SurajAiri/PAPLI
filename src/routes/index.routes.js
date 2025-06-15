@@ -5,7 +5,6 @@ import  ApiKeyRouter from './apiKey.routes.js';
 const router = express.Router();
 
 router.use('/dev', DeveloperRouter);
-router.use('/api', ApiKeyRouter);
 
 
 router.get('/', (req, res) => {

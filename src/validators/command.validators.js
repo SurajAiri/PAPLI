@@ -1,15 +1,14 @@
 import Joi from 'joi';
-import { objectIdValidator } from './utils';
 
 // Validator for creating a command
 const create = Joi.object({
-    apiKeyId: objectIdValidator.required().messages({
+    apiKeyId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
         'any.required': 'API Key ID is required'
     }),
-    projectId: objectIdValidator.required().messages({
+    projectId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
         'any.required': 'Project ID is required'
     }),
-    userId: objectIdValidator.required().messages({
+    userId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
         'any.required': 'User ID is required'
     }),
     payload: Joi.object().required().messages({

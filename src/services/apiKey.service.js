@@ -1,4 +1,4 @@
-import {apiKeySchema} from '../models/apiKey.models.js';
+import apiKeySchema from '../models/apiKey.models.js';
 import { v4 as uuidv4 } from 'uuid';
 
 // create, deleteById, getByToken, getById, getByDevId, getByProjectId
@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const ApiKeyService = {
     async create(apiKeyData) {
         const apiKey = new apiKeySchema({
-            token: uuidv4(),
+            token: "pa-dev-"+uuidv4(),
             developerId: apiKeyData.developerId,
             projectId: apiKeyData.projectId
         });

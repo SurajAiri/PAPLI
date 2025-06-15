@@ -1,10 +1,9 @@
 import Joi from 'joi';
-import { objectIdValidator } from './utils';
 
 
 // Project validator schema
 const create = Joi.object({
-    logo: Joi.string().trim().required().messages({
+    logo: Joi.string().trim().optional().messages({
         'string.empty': 'Logo is required',
         'any.required': 'Logo is required'
     }),
@@ -24,7 +23,7 @@ const create = Joi.object({
         'any.required': 'Description is required'
     }),
 
-    developerId: objectIdValidator.required().messages({
+    developerId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
         'any.required': 'Developer ID is required'
     })
 });
@@ -32,7 +31,7 @@ const create = Joi.object({
 
 // Validator for project ID
 const project = Joi.object({
-    id: objectIdValidator.required().messages({
+    id: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
         'any.required': 'Project ID is required'
     })
 });
@@ -55,7 +54,7 @@ const update = Joi.object({
         'string.empty': 'Description cannot be empty'
     }),
 
-    developerId: objectIdValidator.optional().messages({
+    developerId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).optional().messages({
         'any.required': 'Developer ID is required'
     })
 }).min(1).messages({

@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const projectSchema = new mongoose.Schema({
     logo: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     shortDesc: {
