@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const { objectIdValidator } = require('./utils').default;
+import Joi from 'joi';
+import { objectIdValidator } from './utils';
 
 
 // Project validator schema
@@ -61,9 +61,10 @@ const updateProject = Joi.object({
 }).min(1).messages({
     'object.min': 'At least one field is required to update'
 });
-
-module.exports = {
+const projectValidator = {
     createProject,
     projectIdSchema,
     updateProject
 };
+
+export default projectValidator;

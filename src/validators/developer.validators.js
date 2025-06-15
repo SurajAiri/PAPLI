@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 // Developer registration validation schema
 const registerDeveloper = Joi.object({
@@ -31,9 +31,23 @@ const updateDeveloper = Joi.object({
 }).min(1).messages({
     'object.min': 'At least one field is required to update'
 });
+// Developer login validation schema
+const loginDeveloper = Joi.object({
+    email: Joi.string().email().required().trim().messages({
+        'string.empty': 'Email is required',
+        'string.email': 'Please provide a valid email',
+        'any.required': 'Email is required'
+    }),
+    password: Joi.string().required().messages({
+        'string.empty': 'Password is required',
+        'any.required': 'Password is required'
+    })
+});
 
-module.exports = {
+const developerValidator = {
     registerDeveloper,
     loginDeveloper,
     updateDeveloper
 };
+
+export default developerValidator;

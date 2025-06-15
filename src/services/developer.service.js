@@ -1,4 +1,4 @@
-const developerSchema = require('../models/developer.models');
+import developerSchema from '../models/developer.model.js';
 
 // create, updateById, deleteById, getById, getAll, count
 const DeveloperService = {
@@ -29,4 +29,4 @@ const DeveloperService = {
     }
 };
 
-module.exports = DeveloperService;
+export default DeveloperService;

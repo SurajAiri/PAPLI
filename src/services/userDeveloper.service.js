@@ -1,4 +1,4 @@
-const userDeveloperSchema = require('../models/userDeveloper.models');
+import userDeveloperSchema from '../models/userDeveloper.model.js';
 
 const UserDeveloperService = {
     async create(userDeveloperData) {
@@ -28,4 +28,5 @@ const UserDeveloperService = {
         return await userDeveloperSchema.countDocuments(query);
     }
 };
-module.exports = UserDeveloperService;
+
+export default UserDeveloperService;

@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 
 // User validator schema for creation
@@ -54,9 +54,9 @@ const updateUser = Joi.object({
 }).min(1).messages({
     'object.min': 'At least one field is required to update'
 });
-
-
-module.exports = {
+const userValidators = {
     createUser,
-    updateUser,
+    updateUser
 };
+
+export default userValidators;

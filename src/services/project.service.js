@@ -1,4 +1,4 @@
-const projectSchema = require('../models/project.models');
+import projectSchema from '../models/project.model.js';
 
 const ProjectService = {
     async create(projectData) {
@@ -29,3 +29,5 @@ const ProjectService = {
         return await projectSchema.countDocuments(query);
     }
 };
+
+export default ProjectService;

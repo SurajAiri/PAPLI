@@ -1,8 +1,8 @@
-const Joi = require('joi');
-const { objectIdValidator } = require('./utils');
+import Joi from 'joi';
+import { objectIdValidator } from './utils';
 
 // Validator for creating an API key
-const createApiKeyValidator = Joi.object({
+const createApiKey = Joi.object({
     token: Joi.string().required().trim(),
     developerId: objectIdValidator.required().messages({
         'any.required': 'Developer ID is required'
@@ -15,6 +15,8 @@ const createApiKeyValidator = Joi.object({
     'any.required': 'Project ID is required'
 });
 
-module.exports = {
-    createApiKeyValidator
+const apiKeyValidators = {
+    createApiKey
 };
+
+export default apiKeyValidators;

@@ -1,4 +1,4 @@
-const userSchema = require('../models/user.models');
+import userSchema from '../models/user.model.js';
 
 const UserService = {
     async create(userData) {
@@ -42,4 +42,5 @@ const UserService = {
     }
 
 };
-module.exports = UserService;
+
+export default UserService;

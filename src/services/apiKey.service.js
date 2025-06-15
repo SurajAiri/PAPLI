@@ -1,5 +1,5 @@
-const apiKeySchema = require('../models/apiKey.models');
-const { v4: uuidv4 } = require('uuid');
+import {apiKeySchema} from '../models/apiKey.models';
+import { v4 as uuidv4 } from 'uuid';
 
 // create, deleteById, getByToken, getById, getByDevId, getByProjectId
 
@@ -37,4 +37,4 @@ const ApiKeyService = {
     // }
 };
 
-module.exports = ApiKeyService;
+export default ApiKeyService;

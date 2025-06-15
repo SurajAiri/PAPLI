@@ -1,8 +1,8 @@
-const Joi = require('joi');
-const { objectIdValidator } = require('./utils');
+import Joi from 'joi';
+import { objectIdValidator } from './utils';
 
 // Validator for creating a command
-const createCommandValidator = Joi.object({
+const createCommand = Joi.object({
     apiKeyId: objectIdValidator.required().messages({
         'any.required': 'API Key ID is required'
     }),
@@ -21,7 +21,7 @@ const createCommandValidator = Joi.object({
 });
 
 // Validator for updating a command
-const updateCommandValidator = Joi.object({
+const updateCommand = Joi.object({
     apiKeyId: objectIdValidator,
     projectId: objectIdValidator,
     userId: objectIdValidator,
@@ -32,7 +32,7 @@ const updateCommandValidator = Joi.object({
 });
 
 // Validator for updating only the status of a command
-const updateCommandStatusValidator = Joi.object({
+const updateCommandStatus = Joi.object({
     status: Joi.string()
         .valid('created', 'queued', 'delivered', 'failed', 'completed')
         .required()
@@ -42,8 +42,10 @@ const updateCommandStatusValidator = Joi.object({
         })
 });
 
-module.exports = {
-    createCommandValidator,
-    updateCommandValidator,
-    updateCommandStatusValidator
+const commandValidators = {
+    createCommand,
+    updateCommand,
+    updateCommandStatus
 };
+
+export default commandValidators;

@@ -1,8 +1,8 @@
-const Joi = require('joi');
-const { objectIdValidator } = require('./utils');
+import Joi from 'joi';
+import { objectIdValidator } from './utils';
 
 // Validator for creating a user-developer association
-const createUserDeveloperValidator = Joi.object({
+const createUserDeveloper = Joi.object({
     devId: objectIdValidator.required().messages({
         'any.required': 'Developer ID is required'
     }),
@@ -17,7 +17,7 @@ const createUserDeveloperValidator = Joi.object({
 });
 
 // Validator for updating a user-developer association
-const updateUserDeveloperValidator = Joi.object({
+const updateUserDeveloper = Joi.object({
     devId: objectIdValidator.optional(),
     userId: objectIdValidator.optional(),
     projectId: objectIdValidator.optional()
@@ -25,8 +25,9 @@ const updateUserDeveloperValidator = Joi.object({
     'string.pattern.base': 'Invalid ID format',
     'object.min': 'At least one field must be provided for update'
 });
-
-module.exports = {
-    createUserDeveloperValidator,
-    updateUserDeveloperValidator
+const userDeveloperValidator = {
+    createUserDeveloper,
+    updateUserDeveloper
 };
+
+export default userDeveloperValidator;

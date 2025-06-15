@@ -1,4 +1,4 @@
-const commandSchema = require('../models/command.models');
+import commandSchema from '../models/command.models';
 
 // todo: reconfigure this service properly in next version
 const CommandService = {
@@ -36,4 +36,4 @@ const CommandService = {
     },
 };
 
-module.exports = CommandService;
+export default CommandService;
