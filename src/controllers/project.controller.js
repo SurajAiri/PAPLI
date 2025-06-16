@@ -30,8 +30,7 @@ const ProjectController = {
   },
   async getAll(req, res) {
     try {
-      // todo: developer id from jwt token
-      const { developerId } = req.body;
+      const { id: developerId } = req.user;
       const { limit = 10, offset = 0 } = req.query;
       const projects = await ProjectService.getAll(offset, limit, developerId);
       if (!projects || projects.length === 0) {
@@ -61,7 +60,7 @@ const ProjectController = {
       if (!project) {
         return res.sendResponse(404, { message: "Project not found" });
       }
-      
+
       return res.sendResponse(200, {
         message: "Project retrieved successfully",
         data: project,
@@ -119,7 +118,9 @@ const ProjectController = {
       const { developerId } = req.params;
       const projects = await ProjectService.getAll(0, 10, developerId);
       if (!projects || projects.length === 0) {
-        return res.sendResponse(404, { message: "No projects found for this developer" });
+        return res.sendResponse(404, {
+          message: "No projects found for this developer",
+        });
       }
       return res.sendResponse(200, {
         message: "Projects retrieved successfully",
@@ -128,6 +129,33 @@ const ProjectController = {
     } catch (error) {
       return res.sendResponse(500, {
         message: "Error retrieving projects by developer ID",
+        error: error.message,
+      });
+    }
+  },
+  async validateProjectOwnership(req, res, next) {
+    try {
+      const { id: projectId } = req.params;
+      const { id: developerId } = req.user;
+
+      // todo: first check redis if the project exists
+      // if not found in redis, then check the database
+
+      const project = await ProjectService.getById(projectId);
+      if (!project) {
+        return res.sendResponse(404, { message: "Project not found" });
+      }
+
+      if (project.developerId.toString() !== developerId.toString()) {
+        return res.sendResponse(403, {
+          message: "You do not have permission to access this project",
+        });
+      }
+
+      next();
+    } catch (error) {
+      return res.sendResponse(500, {
+        message: "Error validating project ownership",
         error: error.message,
       });
     }

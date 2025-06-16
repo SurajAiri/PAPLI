@@ -14,15 +14,20 @@ const developerSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
-    password: {
+    username: {
         type: String,
         required: true,
-        minlength: 6
+        unique: true,
+        trim: true
     },
-    role: {
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    authProvider: {
         type: String,
-        enum: ['admin', 'developer'],
-        default: 'developer'
+        enum: ['google'],
+        default: 'google'
     },
     createdAt: {
         type: Date,

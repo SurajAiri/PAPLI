@@ -1,4 +1,4 @@
-import userSchema from '../models/user.model.js';
+import userSchema from '../models/user.models.js';
 
 const UserService = {
     async create(userData) {

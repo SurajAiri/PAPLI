@@ -1,8 +1,10 @@
+import { get } from 'mongoose';
 import developerSchema from '../models/developer.models.js';
 
 // create, updateById, deleteById, getById, getAll, count
 const DeveloperService = {
     async create(developerData) {
+        console.log("Creating developer with data:", developerData);
         return await developerSchema.create(developerData);
     },
 
@@ -16,6 +18,10 @@ const DeveloperService = {
 
     async getById(id) {
         return await developerSchema.findById(id);
+    },
+
+    async getByEmail(email) {
+        return await developerSchema.findOne({ email });
     },
 
     async getAll(offset = 0, limit = 10) {

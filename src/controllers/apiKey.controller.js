@@ -85,8 +85,7 @@ const ApiKeyController = {
 
   async getByDevId(req, res) {
     try {
-        // todo: give this through jwt token
-      const { developerId } = req.params;
+      const { id:developerId } = req.user;
       const apiKeys = await ApiKeyService.getByDevId(developerId);
       if (!apiKeys || apiKeys.length === 0) {
         return res.sendResponse(404, {
@@ -106,8 +105,9 @@ const ApiKeyController = {
   },
   async getByProjectId(req, res) {
     try {
-      // todo: give this through jwt token
       const { projectId } = req.params;
+      // todo: check if project belongs to same developer 
+
       const apiKeys = await ApiKeyService.getByProjectId(projectId);
       if (!apiKeys || apiKeys.length === 0) {
         return res.sendResponse(404, {
