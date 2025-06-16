@@ -4,6 +4,7 @@ const ApiKeyController = {
   async create(req, res) {
     try {
       const data = req.body;
+      const { id: developerId } = req.user;
       const { error, value } = ApiKeyValidator.create.validate(data);
 
       if (error) {
@@ -12,7 +13,10 @@ const ApiKeyController = {
           error: error.details,
         });
       }
-      const apiKey = await ApiKeyService.create(value);
+      const apiKey = await ApiKeyService.create({
+        ...value,
+        developerId,
+      });
 
       if (!apiKey) {
         return res.sendResponse(500, { message: "Failed to create API key" });
@@ -45,43 +49,44 @@ const ApiKeyController = {
     }
   },
 
-  async getByToken(req, res) {
-    try {
-      const { token } = req.params;
-      const apiKey = await ApiKeyService.getByToken(token);
-      if (!apiKey) {
-        return res.sendResponse(404, { message: "API key not found" });
-      }
-      return res.sendResponse(200, {
-        message: "API key retrieved successfully",
-        data: apiKey,
-      });
-    } catch (error) {
-      return res.sendResponse(500, {
-        message: "Error retrieving API key",
-        error: error.message,
-      });
-    }
-  },
+    //todo: this will be a middleware
+  // async getByToken(req, res) {
+  //   try {
+  //     const { token } = req.params;
+  //     const apiKey = await ApiKeyService.getByToken(token);
+  //     if (!apiKey) {
+  //       return res.sendResponse(404, { message: "API key not found" });
+  //     }
+  //     return res.sendResponse(200, {
+  //       message: "API key retrieved successfully",
+  //       data: apiKey,
+  //     });
+  //   } catch (error) {
+  //     return res.sendResponse(500, {
+  //       message: "Error retrieving API key",
+  //       error: error.message,
+  //     });
+  //   }
+  // },
 
-  async getById(req, res) {
-    try {
-      const { id } = req.params;
-      const apiKey = await ApiKeyService.getById(id);
-      if (!apiKey) {
-        return res.sendResponse(404, { message: "API key not found" });
-      }
-      return res.sendResponse(200, {
-        message: "API key retrieved successfully",
-        data: apiKey,
-      });
-    } catch (error) {
-      return res.sendResponse(500, {
-        message: "Error retrieving API key",
-        error: error.message,
-      });
-    }
-  },
+  // async getById(req, res) {
+  //   try {
+  //     const { id } = req.params;
+  //     const apiKey = await ApiKeyService.getById(id);
+  //     if (!apiKey) {
+  //       return res.sendResponse(404, { message: "API key not found" });
+  //     }
+  //     return res.sendResponse(200, {
+  //       message: "API key retrieved successfully",
+  //       data: apiKey,
+  //     });
+  //   } catch (error) {
+  //     return res.sendResponse(500, {
+  //       message: "Error retrieving API key",
+  //       error: error.message,
+  //     });
+  //   }
+  // },
 
   async getByDevId(req, res) {
     try {
@@ -103,10 +108,11 @@ const ApiKeyController = {
       });
     }
   },
+  
+  // todo: check if project belongs to same developer 
   async getByProjectId(req, res) {
     try {
       const { projectId } = req.params;
-      // todo: check if project belongs to same developer 
 
       const apiKeys = await ApiKeyService.getByProjectId(projectId);
       if (!apiKeys || apiKeys.length === 0) {

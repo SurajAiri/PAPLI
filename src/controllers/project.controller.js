@@ -6,6 +6,7 @@ const ProjectController = {
   async create(req, res) {
     try {
       const data = req.body;
+      const { id: developerId } = req.user;
       const { error, value } = projectValidator.create.validate(data);
       if (error) {
         return res.sendResponse(400, {
@@ -13,7 +14,7 @@ const ProjectController = {
           error: error.details,
         });
       }
-      const project = await ProjectService.create(value);
+      const project = await ProjectService.create({...value, developerId});
       if (!project) {
         return res.sendResponse(500, { message: "Failed to create project" });
       }
@@ -113,26 +114,8 @@ const ProjectController = {
       });
     }
   },
-  async getByDeveloperId(req, res) {
-    try {
-      const { developerId } = req.params;
-      const projects = await ProjectService.getAll(0, 10, developerId);
-      if (!projects || projects.length === 0) {
-        return res.sendResponse(404, {
-          message: "No projects found for this developer",
-        });
-      }
-      return res.sendResponse(200, {
-        message: "Projects retrieved successfully",
-        data: projects,
-      });
-    } catch (error) {
-      return res.sendResponse(500, {
-        message: "Error retrieving projects by developer ID",
-        error: error.message,
-      });
-    }
-  },
+
+  //todo: Middleware to validate project ownership
   async validateProjectOwnership(req, res, next) {
     try {
       const { id: projectId } = req.params;

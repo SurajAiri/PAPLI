@@ -22,19 +22,8 @@ const create = Joi.object({
         'string.empty': 'Description is required',
         'any.required': 'Description is required'
     }),
-
-    developerId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
-        'any.required': 'Developer ID is required'
-    })
 });
 
-
-// Validator for project ID
-const project = Joi.object({
-    id: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required().messages({
-        'any.required': 'Project ID is required'
-    })
-});
 
 // update project validator schema
 const update = Joi.object({
@@ -54,9 +43,6 @@ const update = Joi.object({
         'string.empty': 'Description cannot be empty'
     }),
 
-    developerId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).optional().messages({
-        'any.required': 'Developer ID is required'
-    })
 }).min(1).messages({
     'object.min': 'At least one field is required to update'
 });
