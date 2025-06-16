@@ -1,10 +1,11 @@
 import express from 'express';
 import  DeveloperRouter from './developer.routes.js';
-import  ApiKeyRouter from './apiKey.routes.js';
+import AuthRouter from './auth.routes.js';
 
 const router = express.Router();
 
 router.use('/dev', DeveloperRouter);
+router.use('/auth',AuthRouter);
 
 
 router.get('/', (req, res) => {

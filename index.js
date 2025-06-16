@@ -3,6 +3,7 @@ import express from 'express';
 import responseFormatter from './src/middlewares/response.middlewares.js';
 import mongoose from 'mongoose';
 import router from './src/routes/index.routes.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 // middlewares
 app.use(express.json());
 app.use(responseFormatter);
+app.use(cors({
+    origin: '*', // Allow all origins, you can specify specific origins if needed
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}));
 
 app.use('/api/v1', router);
 
