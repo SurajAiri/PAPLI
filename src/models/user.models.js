@@ -13,20 +13,19 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
-    password: {
+    username:{
         type: String,
         required: true,
-        minlength: 6
-    },
-    role: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'user'
-    },
-    googleId: {
-        type: String,
         unique: true,
-        sparse: true
+        trim: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    isVerified:{
+        type: Boolean,
+        default: false
     },
     createdAt: {
         type: Date,

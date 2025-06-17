@@ -14,18 +14,13 @@ const create = Joi.object({
         'any.required': 'Email is required'
     }),
 
-    password: Joi.string().min(6).required().messages({
-        'string.empty': 'Password is required',
-        'string.min': 'Password must be at least 6 characters long',
-        'any.required': 'Password is required'
+    username: Joi.string().trim().required().messages({
+        'string.empty': 'Username is required',
+        'any.required': 'Username is required'
     }),
 
-    role: Joi.string().valid('admin', 'user').default('user').messages({
-        'string.empty': 'Role cannot be empty',
-        'any.only': 'Role must be either "admin" or "user"'
-    }),
-
-    googleId: Joi.string().allow(null, '').optional()
+    isActive: Joi.boolean().default(true).optional(),
+    
 });
 
 
@@ -35,22 +30,12 @@ const update = Joi.object({
         'string.empty': 'Name cannot be empty'
     }),
 
-    email: Joi.string().trim().email().optional().messages({
-        'string.empty': 'Email cannot be empty',
-        'string.email': 'Please provide a valid email'
+    username: Joi.string().trim().optional().messages({
+        'string.empty': 'Username cannot be empty'
     }),
 
-    password: Joi.string().min(6).optional().messages({
-        'string.empty': 'Password cannot be empty',
-        'string.min': 'Password must be at least 6 characters long'
-    }),
+    isActive: Joi.boolean().optional(),
 
-    role: Joi.string().valid('admin', 'user').optional().messages({
-        'string.empty': 'Role cannot be empty',
-        'any.only': 'Role must be either "admin" or "user"'
-    }),
-
-    googleId: Joi.string().allow(null, '').optional()
 }).min(1).messages({
     'object.min': 'At least one field is required to update'
 });
