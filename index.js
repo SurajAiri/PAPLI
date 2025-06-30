@@ -21,6 +21,9 @@ app.use(cors({
 
 app.use('/api/v1', router);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to the Developer API");
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
